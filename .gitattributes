@@ -1,0 +1,14 @@
+core.eol=lf
+* text eol=lf
+
+# Compiled documents
+*.pdf binary
+*.dvi binary
+
+# Image files
+*.png binary
+*.svg binary
+
+# Microsoft Word files
+*.doc binary
+*.docx binary
