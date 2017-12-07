@@ -75,6 +75,9 @@ class TestCoordinateValidation(unittest.TestCase):
 	
 class TestStringToCoordinates(unittest.TestCase):	
 	"""Test the correctness of coordinate string to coordinates conversion"""
+	
+	# Positive test cases
+	
 	def test_unsigned_ints(self):
 		cs = '1 2'
 		self.assertEqual(tinyplot.string_to_coordinates(cs), (1, 2))
@@ -94,6 +97,51 @@ class TestStringToCoordinates(unittest.TestCase):
 	# Negative test cases
 	# None, since string_to_coordinates assumes correct coordinate strings
 	# are passed
+	
+class TestBuildRawCoordinates(unittest.TestCase):
+	"""Tests the correctness of building raw coordinates from
+	special test file
+	"""
+	
+	f = 'test-file-01'
+	
+	# Positive test cases
+	def test_file_01(self):
+		expected = [
+			['0.1 1.0',
+			'0.2 2.0'],
+			['0.3 1.5',
+			'1.5 0.3'],
+			['-0.4 2.5',
+			'2.5 -0.4',
+			'-4.6 -1.982',
+			'1.22 0.486'],
+			['0.5 0.5',
+			'0.6 1.5']
+		]
+		
+		self.assertEqual(tinyplot.get_raw_coordinates(self.f), expected)
+		
+	# Negative test cases
+	
+	def test_file_01_wrong(self):
+		unexpected = [
+			['0.1 1.0',
+			'0.2 2.0'],
+			['thatsnotacoordinate'],
+			['0.3 1.5',
+			'1.5 0.3'],
+			['line whatever'],
+			['-0.4 2.5',
+			'2.5 -0.4',
+			'-4.6 -1.982',
+			'1.22 0.486'],
+			['89016723434iurhfalkjewsyr07q4'],
+			['0.5 0.5',
+			'0.6 1.5']
+		]
+		
+		self.assertNotEqual(tinyplot.get_raw_coordinates(self.f), unexpected)
 		
 if __name__ == '__main__':
 	unittest.main()
