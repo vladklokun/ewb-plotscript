@@ -1,0 +1,234 @@
+\documentclass[a4paper,oneside,DIV=12,12pt]{scrartcl}
+
+\usepackage{graphicx}
+
+\usepackage{fontspec}
+\setmainfont{PT Serif}
+\setsansfont{PT Sans}
+\setmonofont{PT Mono}
+
+\usepackage{unicode-math}
+\setmathfont{PT Serif}
+
+\usepackage{microtype}
+
+\usepackage{polyglossia}
+\setmainlanguage{ukrainian}
+\setotherlanguage{english}
+
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks      = false,%
+	linkbordercolor = blue,%
+	pdfborderstyle  = {/S/U/W 1},%
+}
+
+\usepackage{enumitem}
+\setlist[itemize]{label=—}
+
+\newcommand{\progname}{tinyplot}
+
+\newcommand{\theprojcode}{PLOTSCRIPT}
+\newcommand{\theprojrev}{00}
+\newcommand{\thedoctype}{TESTCASEDESC}
+\newcommand{\thedocnum}{000}
+\newcommand{\thedocfullcode}{\theprojcode-\theprojrev-\thedoctype-\thedocnum}
+\newcommand{\printdocfullcode}{\texttt{\thedocfullcode}}
+\newcommand{\theversion}{2017-12-07-000}
+
+\newcommand{\classname}[1]{\texttt{#1}}
+\newcommand{\funcname}[1]{\texttt{#1}}
+
+\newcommand{\caseattrib}[1]{\noindent\textbf{#1}}
+
+\newcommand{\printtrue}{\texttt{True}}
+\newcommand{\printfalse}{\texttt{False}}
+
+\newcommand{\filename}[1]{\texttt{#1}}
+
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+		\vspace*{\fill}
+			Опис тестових випадків\\
+			для тестування програмного продукту\\
+			для побудови графіків
+			
+		\vspace*{\fill}
+	\end{center}
+	Кодова назва проекту: \theprojcode\\
+	Код документу: \printdocfullcode\\
+	Версія: \theversion\\
+	\end{titlepage}
+	
+	\tableofcontents
+	\newpage
+	
+	\section{Клас \classname{TestFloatCorrectness}}
+		Клас \classname{TestFloatCorrectness} призначений для перевірки правильності роботи функції \verb|can_be_float()| з різними значеннями аргументу і містить тестові випадки у вигляді функцій, що виконують перевірки.
+		
+		\subsection{Позитивні тестові випадки}
+		
+			\subsubsection{\funcname{test\_unsigned\_int()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| з додатними цілими числами.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_signed\_int()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| з цілими числами зі знаком.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_unsigned\_real()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| з додатними дійсними числами.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+			
+			\subsubsection{\funcname{test\_signed\_real()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| з дійсними числами зі знаком.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_exp\_notation\_positive()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| з додатними дійсними числами, поданими у науковій нотації.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_exp\_notation\_negative()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| з від'ємними дійсними числами, поданими у науковій нотації.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+			
+		\subsection{Негативні тестові випадки}
+			
+			\subsubsection{\funcname{test\_string\_word()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| із рядком, що містить слово.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printfalse.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_string\_ascii\_sentence()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| із рядком, що містить речення з символів, поданих у кодуванні~ASCII.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printfalse.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_string\_unicode\_sentence()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| із рядком, що містить речення з символів, поданих у кодуванні~Unicode.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printfalse.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_exp\_notation\_floating()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|can_be_float()| із рядком, що містить число, подане у неправильному науковому форматі.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printfalse.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+		
+	\section{Клас \classname{TestCoordinateValidation}}
+		\subsection{Позитивні тестові випадки}
+			\subsubsection{\funcname{test\_unsigned\_int\_coordinates()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|is_valid_coordinates()| з додатними координатами.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_signed\_int\_coordinates()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|is_valid_coordinates()| з від'ємними координатами.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_unsigned\_float\_coordinates()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|is_valid_coordinates()| з додатними дійсними координатами.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_signed\_float\_coordinates()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|is_valid_coordinates()| з від'ємними дійними координатами.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+		
+		\subsection{Негативні тестові випадки}
+			\subsubsection{\funcname{test\_merged\_number()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|is_valid_coordinates()| з координатами, які не розділені жодним символом.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printfalse.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+	
+	\section{Клас \classname{TestStringToCoordinates}}
+		
+		\subsection{Позитивні тестові випадки}
+			\subsubsection{\funcname{test\_unsigned\_ints()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|string_to_coordinates()| з рядками, що містять координати у форматі додатних цілих чисел.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_signed\_ints()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|string_to_coordinates()| з рядками, що містять координати у форматі цілих чисел зі знаком.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_unsigned\_floats()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|string_to_coordinates()| з рядками, що містять координати у форматі дійсних чисел без знака.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+			\subsubsection{\funcname{test\_signed\_floats()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|string_to_coordinates()| з рядками, що містять координати у форматі дійсних чисел зі знаком.
+				
+				\caseattrib{Очікуваний результат:} функція повертає значення \printtrue.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+				
+		\subsection{Негативні тестові випадки}
+			У розробці негативних тестових випадків немає сенсу, оскільки цільова функція \verb|string_to_coordinates()| працює зі значеннями координат, що вже були валідовані.
+			
+	\section{Клас \classname{TestBuildRawCoordinates}}
+		\subsection{Позитивні тестові випадки}
+			\subsubsection{\funcname{test\_file\_01()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|get_raw_coordinates()| на тестовому файлі \filename{test-file-01}. Порівнює фактичний результат роботи з правильним результатом.
+				
+				\caseattrib{Очікуваний результат:} результат виконання функції збігається з очікуваним.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+			
+		\subsection{Негативні тестові випадки}
+			\subsubsection{\funcname{test\_file\_01\_wrong()}}
+				\caseattrib{Опис:} призначена для перевірки роботи функції \verb|get_raw_coordinates()| на тестовому файлі \filename{test-file-01}. Порівнює фактичний результат роботи з передбачуваним неправильним результатом.
+				
+				\caseattrib{Очікуваний результат:} результат виконання функції не збігається з очікуваним.
+				
+				\caseattrib{Результат тесту:} пройдений успішно.
+\end{document}
