@@ -1,0 +1,160 @@
+\documentclass[a4paper,oneside,DIV=12,12pt]{scrartcl}
+
+\usepackage{graphicx}
+
+\usepackage{fontspec}
+\setmainfont{PT Serif}
+\setsansfont{PT Sans}
+\setmonofont{PT Mono}
+
+\usepackage{unicode-math}
+\setmathfont{STIX Two Math}
+
+\usepackage{microtype}
+
+\usepackage{polyglossia}
+\setmainlanguage{ukrainian}
+\setotherlanguage{english}
+
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks      = false,%
+	linkbordercolor = blue,%
+	pdfborderstyle  = {/S/U/W 1},%
+}
+
+%%% Itemize and enumerate customization
+\usepackage{enumitem,calc}
+\setlist[itemize]{label=—}
+%%%
+
+%%% Document variables definitions
+\newcommand{\progname}{tinyplot}
+
+\newcommand{\theprojcode}{PLOTSCRIPT}
+\newcommand{\theprojrev}{00}
+\newcommand{\thedoctype}{METRICSREPORT}
+\newcommand{\thedocnum}{000}
+\newcommand{\thedocfullcode}{\theprojcode-\theprojrev-\thedoctype-\thedocnum}
+\newcommand{\printdocfullcode}{\texttt{\thedocfullcode}}
+\newcommand{\theversion}{2017-12-07-000}
+%%%
+
+%%%
+\usepackage{booktabs}
+\usepackage{longtable}
+%%%
+
+%%%
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+%%%
+
+\renewcommand{\arraystretch}{1.2}
+
+\begin{document}
+	\begin{titlepage}
+	\begin{center}
+		\vspace*{\fill}
+			Звіт про метрики\\
+			обчислені під час перевірки якості\\
+			програмного продукту для побудови графіків
+			
+		\vspace*{\fill}
+	\end{center}
+	Кодова назва проекту: \theprojcode\\
+	Код документу: \printdocfullcode\\
+	Версія: \theversion\\
+	\end{titlepage}
+	
+	
+	\section{Методика}
+		Оскільки супровід проекту у великій мірі автоматизований, то збір деяких метрик також виконувався автоматично.
+		
+	\section{Метрики програмного продукту \progname}
+	\label{sec:collected-metrics}
+	
+		Метрики, що були зібрані автоматично, наведені у табл.~\ref{tab:software-metrics}.
+		\begin{longtable}[c]{lr}
+				\toprule
+					Метрика & Значення\\
+				\midrule
+				\endhead
+				\bottomrule
+				\caption{Метрики програмного продукту \progname }
+				\endfoot
+				\label{tab:software-metrics}
+				
+					Дефектів на рядок коду, шт.     & $0{,}01$\\
+					Кількість рядків коду           & $188$\\
+					Покриття коду, \%               & $70$\\
+					Розмір виконуваного файлу, байт & $5314$\\
+					Час виконання програми, с       & $0{,}25$\\
+					Час завантаження програми, с    & $0{,}10$\\
+					Цикломатична складність         & $96$ \\
+		\end{longtable}
+		
+		Також були обчислені метрики за Халстедом~(табл.~\ref{tab:software-metrics-halstead}). Нехай $\eta_1$~— кількість унікальних операторів, $\eta_2$~— кількість унікальних операндів, $N_1$~— загальна кількість операторів та $N_2$~— загальна кількість операндів, тоді за виміряними значеннями обчислимо інші метрики за формулами. Словник програми~$\eta$:
+		\[
+			\eta = \eta_1 + \eta_2 = 21 + 18 = 39.
+		\]
+		
+		Довжина програми~$N$:
+		\[
+			N = N_1 + N_2 = 76 + 93 = 169.
+		\]
+		
+		Обчислена довжина програми~$\hat{N}$:
+		\[
+			\hat{N} = \eta_1 \log_2 \eta_1 + \eta_2 \log_2 \eta_2
+			        = 21 \log_2 21 + 18 \log_2 18
+					= \num{167,30}.
+		\]
+		
+		Об'єм програми~$V$:
+		\[
+			V = N \cdot \log_2 \eta
+			  = 169 \cdot \log_2 39
+			  = \num{893,20}.
+		\]
+		
+		Складність програми~$D$:
+		\[
+			D = \frac{\eta_1}{2} \cdot \frac{N_2}{\eta_2}
+			  = \frac{21}{2} \cdot \frac{93}{18}
+			  = \frac{217}{4}
+			  = \num{54,25}.
+		\]
+		
+		Зусилля~$E$:
+		\[
+			E = D \cdot V
+			  = \num{54,25} \cdot \num{893,2}
+			  = \num{48456,10}.
+		\]
+		
+		\begin{longtable}[c]{llr}
+				\toprule
+					Метрика & Позначення & Значення\\
+				\midrule
+				\endhead
+				\bottomrule
+				\caption{Метрики програмного продукту \progname\ за Халстедом}
+				\endfoot
+				\label{tab:software-metrics-halstead}
+				
+					Кількість унікальних операторів & $\eta_1$  & $21{,}00$\\
+					Кількість унікальних операндів  & $\eta_2$  & $18{,}00$\\
+					Загальна кількість операторів   & $N_1$     & $76{,}00$\\
+					Загальна кількість операндів    & $N_2$     & $93{,}00$\\
+					Словник програми                & $\eta$    & $39{,}00$\\
+					Довжина програми                & $N$       & $169{,}00$\\
+					Обчислена довжина програми      & $\hat{N}$ & $167{,}30$ \\
+					Об'єм                           & $V$       & $893{,}20$ \\
+					Складність                      & $D$       & $54{,}25$ \\
+					Зусилля                         & $E$       & $48456{,}10$ \\
+		\end{longtable}
+		
+\end{document}
